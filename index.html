@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاشتراك بالكلاود الخاص ☁️🚀</title>
+    <!-- استدعاء خط عربي متغير الأوزان -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    
+    
+<style>
+:root{
+  --bg:#050507; --panel:rgba(14,14,18,.72); --panel2:rgba(22,22,28,.62);
+  --line:rgba(255,255,255,.10); --text:#f7f7f8; --muted:#9b9ba5;
+  --accent:#a78bfa; --accent2:#7c3aed; --good:#d8b4fe;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden; color:var(--text);
+  background:radial-gradient(circle at 50% 0%,#17121f 0,#08080b 38%,#030304 100%);
+  font-family:'Cairo',system-ui,sans-serif;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72));
+}
+#beam-bg{position:fixed;inset:0;z-index:-3;opacity:.82;pointer-events:none}
+#beam-bg canvas{display:block;width:100%!important;height:100%!important}
+#beam-vignette{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(circle at 50% 25%,transparent 0,rgba(0,0,0,.10) 38%,rgba(0,0,0,.78) 100%)}
+#lattice-splash-screen{
+ position:fixed;inset:0;background:#030304;display:flex;align-items:center;justify-content:center;
+ z-index:30000;transition:.55s
+}
+.lattice-loader{display:grid;grid-template-columns:repeat(3,24px);gap:9px}
+.lattice-loader div{height:24px;border-radius:7px;background:#fff;animation:pulse .5s ease-in-out infinite alternate}
+.lattice-loader div:nth-child(2),.lattice-loader div:nth-child(4),.lattice-loader div:nth-child(6),.lattice-loader div:nth-child(8){animation-delay:.12s}
+.lattice-loader div:nth-child(1),.lattice-loader div:nth-child(3),.lattice-loader div:nth-child(7),.lattice-loader div:nth-child(9){animation-delay:.24s}
+@keyframes pulse{to{transform:scale(1);opacity:1;box-shadow:0 0 22px #fff}from{transform:scale(.35);opacity:.15}}
+#new-intro{position:fixed;inset:0!important;background:#050507!important;z-index:20000!important}
+#splash-screen{
+ position:fixed;inset:0;background:rgba(3,3,5,.78);backdrop-filter:blur(18px);
+ display:flex;align-items:center;justify-content:center;text-align:center;z-index:9999;
+ opacity:0;visibility:hidden;pointer-events:none;transition:.6s;padding:24px
+}
+#splash-screen.active{opacity:1;visibility:visible;pointer-events:auto}
+.splash-content{width:min(680px,100%);padding:34px;border:1px solid var(--line);border-radius:30px;background:rgba(10,10,14,.64);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.splash-content h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.2;margin:0 0 14px;font-weight:900}
+.splash-content p{font-size:clamp(.95rem,3vw,1.2rem);color:var(--muted);margin:0 auto 30px}
+.ms-claude-font{letter-spacing:1.5px;font-family:'Brush Script MT',cursive}
+.specular-btn,.contact-trigger-btn{
+ border:0;border-radius:16px;background:#fff;color:#050507;font:800 1rem 'Cairo';cursor:pointer;
+ padding:14px 24px;transition:.25s;box-shadow:0 12px 35px rgba(255,255,255,.12)
+}
+.specular-btn:hover,.contact-trigger-btn:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(167,139,250,.25)}
+.main-content{display:none;opacity:0;transition:opacity .7s}
+.main-content.visible{display:block;opacity:1}
+.container{width:min(1120px,100%);margin:auto;padding:22px 18px 40px}
+.brand-badge-container{text-align:center;padding:10px 0 6px}
+.persistent-brand-badge{
+ display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border:1px solid var(--line);
+ border-radius:999px;background:rgba(255,255,255,.055);backdrop-filter:blur(16px);
+ box-shadow:0 10px 35px rgba(0,0,0,.25);font-weight:900
+}
+header{text-align:center;padding:48px 10px 26px}
+header h1{font-size:clamp(2rem,6vw,3.35rem);line-height:1.15;margin:0 0 13px;font-weight:900}
+header p{max-width:680px;margin:auto;color:var(--muted);font-size:clamp(.95rem,2.5vw,1.15rem)}
+.rubber-segment-container{display:flex;justify-content:center;margin:18px 0 26px}
+.rubber-nav{
+ display:flex;position:relative;width:min(760px,100%);padding:5px;border:1px solid var(--line);
+ border-radius:18px;background:rgba(10,10,14,.62);backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.25)
+}
+.rubber-tab{position:relative;z-index:2;flex:1;border:0;background:transparent;color:var(--muted);
+ padding:12px 8px;font:800 clamp(.72rem,2.5vw,.94rem) 'Cairo';cursor:pointer;white-space:nowrap}
+.rubber-tab.active{color:#08080a}
+.rubber-indicator{position:absolute;z-index:1;top:5px;bottom:5px;right:0;border-radius:14px;background:#fff;transition:.38s cubic-bezier(.68,-.55,.265,1.55);box-shadow:0 7px 25px rgba(255,255,255,.16)}
+.pricing-section{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
+.pricing-card{
+ min-width:0;padding:28px 22px;border:1px solid var(--line);border-radius:24px;text-align:center;
+ background:linear-gradient(145deg,rgba(25,25,31,.75),rgba(10,10,14,.68));backdrop-filter:blur(18px);
+ box-shadow:0 25px 70px rgba(0,0,0,.22);display:none;opacity:0;transform:translateY(12px);transition:.35s
+}
+.pricing-card.active-card{display:block;opacity:1;transform:none}
+.pricing-card:hover{transform:translateY(-5px);border-color:rgba(167,139,250,.35)}
+.pricing-card.vip{border-color:rgba(167,139,250,.35)}
+.vip-badge{display:inline-block;margin:-10px auto 13px;padding:5px 12px;border-radius:999px;background:#fff;color:#111;font-size:.78rem;font-weight:900}
+.pricing-title{font-size:1.35rem;margin:4px 0 10px}
+.price{font-size:2.15rem;font-weight:900;margin-bottom:8px}.price span{font-size:.9rem;color:var(--muted)}
+.pricing-desc{color:var(--muted);margin:0;font-size:.94rem}
+.features-section{
+ margin:46px 0 26px;padding:28px;border:1px solid var(--line);border-radius:26px;
+ background:rgba(10,10,14,.58);backdrop-filter:blur(18px)
+}
+.features-title{text-align:center;font-size:1.75rem;margin:0 0 22px}
+.features-list{list-style:none;margin:0 auto;padding:0;max-width:780px;display:grid;gap:11px}
+.features-list li{
+ display:flex;align-items:center;gap:12px;padding:14px 15px;border:1px solid rgba(255,255,255,.07);
+ border-radius:16px;background:rgba(255,255,255,.035);font-size:.98rem
+}
+.features-list li>span:first-child{font-size:1.2rem}
+.cta-section{text-align:center;padding:28px 8px 40px}.cta-section h2{font-size:1.9rem;margin:0 0 8px}.cta-section p{color:var(--muted);margin:0 auto 22px;max-width:650px}
+.branched-menu-wrapper{position:relative;display:inline-block}.branched-options{
+ position:absolute;bottom:calc(100% + 12px);right:50%;transform:translateX(50%) scale(.94);
+ width:min(300px,calc(100vw - 36px));display:grid;gap:9px;opacity:0;visibility:hidden;pointer-events:none;transition:.25s
+}
+.branched-menu-wrapper.active .branched-options{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(50%) scale(1)}
+.branch-item{display:flex;justify-content:center;align-items:center;padding:12px 15px;border:1px solid var(--line);border-radius:15px;background:rgba(15,15,20,.92);color:#fff;text-decoration:none;font-weight:800;backdrop-filter:blur(18px)}
+footer{padding:20px;text-align:center;color:#777;border-top:1px solid var(--line)}
+@media(max-width:760px){
+ .container{padding:14px 12px 28px}
+ header{padding:34px 5px 20px}
+ .rubber-nav{overflow:hidden}
+ .rubber-tab{padding:11px 4px;font-size:.68rem}
+ .pricing-section{display:block;min-height:235px}
+ .pricing-card{padding:25px 18px}
+ .features-section{padding:20px 14px;margin-top:34px}
+ .features-list li{align-items:flex-start;font-size:.9rem}
+ .splash-content{padding:28px 18px;border-radius:24px}
+ #beam-bg{opacity:.62}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+<body>
+<div id="beam-bg" aria-hidden="true"></div><div id="beam-vignette" aria-hidden="true"></div>
+
+    <!-- 0. شاشة التحميل المبدئية -->
+    <div id="lattice-splash-screen">
+        <div class="lattice-loader">
+            <div></div> <div></div> <div></div>
+            <div></div> <div></div> <div></div>
+            <div></div> <div></div> <div></div>
+        </div>
+    </div>
+    <!-- واجهة البداية (زر الدخول) -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <h1>☁️ أهلاً بك في <span class="ms-claude-font">MS_Claude</span></h1>
+            <p>اضغط بالأسفل للدخول والاطلاع على الباقات والخدمات الحصرية</p>
+            <button class="specular-btn" id="enter-btn">
+                ✨ ادخل إلى الموقع
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. محتوى الموقع الرئيسي -->
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <div class="brand-badge-container">
+                <div class="persistent-brand-badge">
+                    ☁️ <span class="ms-claude-font">MS_Claude</span> الخاص 👑
+                </div>
+            </div>
+
+            <header>
+                <h1 class="prox-text">اشتراكك بالكلاود الخاص</h1>
+                <p class="prox-text">كلشي بمكان واحد إذا تريد سرعة وخصوصية وراحة، فهذا الاشتراك إلك</p>
+            </header>
+
+            <div class="rubber-segment-container">
+                <div class="rubber-nav" id="rubberNav">
+                    <div class="rubber-indicator" id="rubberIndicator"></div>
+                    <button class="rubber-tab active" data-target="daily">الاشتراك اليومي 🔥</button>
+                    <button class="rubber-tab" data-target="weekly">الاشتراك الأسبوعي ⚡</button>
+                    <button class="rubber-tab" data-target="monthly">الاشتراك الشهري 👑</button>
+                </div>
+            </div>
+
+            <section class="pricing-section">
+                <div class="pricing-card active-card" id="daily">
+                    <h3 class="pricing-title prox-text">الاشتراك اليومي</h3>
+                    <div class="price">3,000 <span>د.ع</span></div>
+                    <p class="pricing-desc prox-text">تجربة سريعة ومميزة لمدة 24 ساعة بكامل الميزات.</p>
+                </div>
+                <div class="pricing-card" id="weekly">
+                    <h3 class="pricing-title prox-text">الاشتراك الأسبوعي</h3>
+                    <div class="price">5,000 <span>د.ع</span></div>
+                    <p class="pricing-desc prox-text">أسبوع كامل من السرعة والخصوصية المطلقة.</p>
+                </div>
+                <div class="pricing-card vip" id="monthly">
+                    <div class="vip-badge">الأكثر طلباً 💎</div>
+                    <h3 class="pricing-title prox-text">الاشتراك الشهري</h3>
+                    <div class="price">20,000 <span>د.ع</span></div>
+                    <p class="pricing-desc prox-text">أفضل قيمة، راحة بال وتوفير طول الشهر بدون انقطاع.</p>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <h2 class="features-title prox-text">ليش تشترك ويانا؟</h2>
+                <ul class="features-list">
+                    <li>
+                        <span>☁️</span> 
+                        <span class="feature-text"><strong>كلاود خاص:</strong> هيتات اكثر وكومبوات اكثر ومرتبة.</span>
+                    </li>
+                    <li>
+                        <span>⚡</span> 
+                        <span class="feature-text"><strong>وصول سريع:</strong> أداء عالي بدون تقطيع أو تأخير.</span>
+                    </li>
+                    <li>
+                        <span>🛠️</span> 
+                        <span class="feature-text"><strong>خدمة مخصصة:</strong> دعم فني وخدمة خاصة للمشتركين فقط.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="cta-section">
+                <h2 class="prox-text">لا تضيع الفرصة!</h2>
+                <p class="prox-text">اشترك هسه وخلي تجربتك أقوى وأسرع. اختر المدة اللي تناسبك وتواصل معنا مباشرة.</p>
+                
+                <div class="branched-menu-wrapper" id="branchedMenu">
+                    <div class="branched-options">
+                        <a href="https://t.me/es5_0" target="_blank" class="branch-item">💬 تواصل مع @es5_0</a>
+                        <a href="https://t.me/r_m6h" target="_blank" class="branch-item">💬 تواصل مع @r_m6h</a>
+                    </div>
+                    <button class="contact-trigger-btn" id="contactToggleBtn">
+                        📬 للتواصل السريع
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+""" + plain_js + r"""
+</script>
+<script>
+const enterBtn=document.getElementById('enter-btn');
+const splash=document.getElementById('splash-screen');
+const main=document.getElementById('mainContent');
+const tabs=[...document.querySelectorAll('.rubber-tab')];
+const cards=[...document.querySelectorAll('.pricing-card')];
+const indicator=document.getElementById('rubberIndicator');
+const nav=document.getElementById('rubberNav');
+function updateIndicator(tab){
+ if(!tab||!nav)return;
+ const n=nav.getBoundingClientRect(), r=tab.getBoundingClientRect();
+ indicator.style.width=r.width+'px';
+ indicator.style.transform=`translateX(-${n.right-r.right}px)`;
+}
+enterBtn?.addEventListener('click',()=>{
+ splash.classList.remove('active'); splash.classList.add('hidden');
+ main.classList.add('visible');
+ requestAnimationFrame(()=>updateIndicator(document.querySelector('.rubber-tab.active')));
+});
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+ tabs.forEach(t=>t.classList.remove('active')); tab.classList.add('active');
+ cards.forEach(c=>c.classList.toggle('active-card',c.id===tab.dataset.target));
+ updateIndicator(tab);
+}));
+addEventListener('resize',()=>updateIndicator(document.querySelector('.rubber-tab.active')));
+
+const wrap=document.getElementById('branchedMenu'), toggle=document.getElementById('contactToggleBtn');
+toggle?.addEventListener('click',e=>{e.stopPropagation();wrap.classList.toggle('active')});
+addEventListener('click',()=>wrap?.classList.remove('active'));
+
+window.addEventListener('keydown',e=>{if(e.key==='Escape')wrap?.classList.remove('active')});
+window.addEventListener('load',()=>{
+ const loader=document.getElementById('lattice-splash-screen');
+ setTimeout(()=>{
+   loader.style.opacity='0';loader.style.visibility='hidden';loader.style.pointerEvents='none';
+   setTimeout(()=>document.getElementById('splash-screen').classList.add('active'),350);
+ },900);
+});
+</script>
+</body>
+</html>
